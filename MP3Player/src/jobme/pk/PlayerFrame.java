@@ -19,6 +19,9 @@ import javax.sound.sampled.Mixer;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import Model.Musik;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -41,7 +44,7 @@ public class PlayerFrame extends javax.swing.JFrame {
     // This String Will Be For Image Name or Path
     String imagePath;
     // We need to set app title as string
-    String appName = "JOBME TECH SOLUTIONS - (MP3 Player)";
+    String appName = "Musikku";
     
     // Now Check If Repeat Button is Enabled or not
     boolean repeat = false;
@@ -74,6 +77,123 @@ public class PlayerFrame extends javax.swing.JFrame {
         currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         imagePath = "\\images";
     }
+
+    public MP3Player getPlayer() {
+        return player;
+    }
+
+    public File getSongFile() {
+        return songFile;
+    }
+
+    public String getCurrentDirectory() {
+        return currentDirectory;
+    }
+
+    public String getCurrentPath() {
+        return currentPath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public boolean isRepeat() {
+        return repeat;
+    }
+
+    public boolean isWindowCollapsed() {
+        return windowCollapsed;
+    }
+
+    public int getxMouse() {
+        return xMouse;
+    }
+
+    public int getyMouse() {
+        return yMouse;
+    }
+
+    public JLabel getAppTitle() {
+        return appTitle;
+    }
+
+    public JPanel getControlPanel() {
+        return controlPanel;
+    }
+
+    public JPanel getHeaderPanel() {
+        return headerPanel;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JLabel getMuteBtn() {
+        return muteBtn;
+    }
+
+    public JLabel getOpenBtn() {
+        return openBtn;
+    }
+
+    public JLabel getPauseBtn() {
+        return pauseBtn;
+    }
+
+    public JLabel getPlayBtn() {
+        return playBtn;
+    }
+
+    public JLabel getQuitBtn() {
+        return quitBtn;
+    }
+
+    public JLabel getRepeatBtn() {
+        return repeatBtn;
+    }
+
+    public JLabel getSettingsBtn() {
+        return settingsBtn;
+    }
+
+    public JLabel getSongNameDisplay() {
+        return songNameDisplay;
+    }
+
+    public JPanel getSongNameMainPanel() {
+        return songNameMainPanel;
+    }
+
+    public JPanel getSongNameSubPanel() {
+        return songNameSubPanel;
+    }
+
+    public JLabel getStopBtn() {
+        return stopBtn;
+    }
+
+    public JLabel getVolumeDownBtn() {
+        return volumeDownBtn;
+    }
+
+    public JLabel getVolumeFullBtn() {
+        return volumeFullBtn;
+    }
+
+    public JLabel getVolumeUpBtn() {
+        return volumeUpBtn;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

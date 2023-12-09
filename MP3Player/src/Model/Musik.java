@@ -5,11 +5,11 @@ public class Musik{
     private String penyanyi;
     private String album;
     private String genre;
-    private Lirik lirik;
+    private String lirik;
     private String link;
     private String directory;
 
-    public Musik(String nama, String penyanyi, String album, String genre, Lirik lirik, String link, String directory) {
+    public Musik(String nama, String penyanyi, String album, String genre, String lirik, String link, String directory) {
         this.nama = nama;
         this.penyanyi = penyanyi;
         this.album = album;
