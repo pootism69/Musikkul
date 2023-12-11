@@ -1,14 +1,15 @@
 package Model;
+import java.util.ArrayList;
 
 public class Playlist {
     private String nama;
     private int jumlahLagu;
-    private Musik[] musik;
+    private ArrayList<Musik> musik;
 
-    public Playlist(String nama, int jumlahLagu, Musik[] musik) {
+    public Playlist(String nama, int jumlahLagu, Musik musik) {
         this.nama = nama;
         this.jumlahLagu = jumlahLagu;
-        this.musik = musik;
+        this.musik.add(musik);
     }
 
     public String getNama() {
@@ -27,13 +28,12 @@ public class Playlist {
         this.jumlahLagu = jumlahLagu;
     }
 
-    public Musik[] getMusik() {
+    public ArrayList<Musik> getMusik() {
         return musik;
     }
 
-    public void setMusik(Musik[] musik) {
-        this.musik = musik;
+    public void setMusik(Musik musik) {
+        this.musik.add(musik);
     }
-    
-    
+
 }

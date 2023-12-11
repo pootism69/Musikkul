@@ -51,11 +51,11 @@ public class Musik{
         this.genre = genre;
     }
 
-    public Lirik getLirik() {
+    public String getLirik() {
         return lirik;
     }
 
-    public void setLirik(Lirik lirik) {
+    public void setLirik(String lirik) {
         this.lirik = lirik;
     }
 

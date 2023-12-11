@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import Model.Musik;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import Controller.ControllerMusik;
 
 /**
  *
@@ -76,6 +77,8 @@ public class PlayerFrame extends javax.swing.JFrame {
         // Here get current path and images path in strings
         currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         imagePath = "\\images";
+        
+        
     }
 
     public MP3Player getPlayer() {
