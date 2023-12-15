@@ -18,6 +18,7 @@ public class Search extends javax.swing.JPanel {
      */
     public Search() {
         initComponents();
+        
     }
 
     /**

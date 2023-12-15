@@ -5,6 +5,7 @@
 package component;
 
 import javax.swing.JLabel;
+import model.Model_Music;
 import projek_latih2.login;
 
 /**
@@ -18,10 +19,16 @@ public class bottomMenu extends javax.swing.JPanel {
      */
     public bottomMenu() {
         initComponents();
+        lb_play.setVisible(true);
+        lb_pause.setVisible(false);
+        lb_Nomix.setVisible(true);
+        lb_mix.setVisible(false);
+        lb_NoRepeat.setVisible(true);
+        lb_repeat.setVisible(false);
+        lb_repeatOne.setVisible(false);
+        
     }
-    public JLabel getlb_Title(){
-        return lb_Title;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,6 +39,7 @@ public class bottomMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         slider1 = new Method.Slider();
         lb_Title = new javax.swing.JLabel();
         lb_timeStart = new javax.swing.JLabel();
@@ -46,57 +54,168 @@ public class bottomMenu extends javax.swing.JPanel {
         lb_repeat = new javax.swing.JLabel();
         lb_repeatOne = new javax.swing.JLabel();
         lb_NoRepeat = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(19, 19, 44));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(slider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 360, -1));
+        setLayout(new java.awt.CardLayout());
+
+        jPanel1.setBackground(new java.awt.Color(19, 19, 44));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(slider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 360, -1));
 
         lb_Title.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         lb_Title.setForeground(new java.awt.Color(255, 255, 255));
         lb_Title.setText("Song Title");
-        add(lb_Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        jPanel1.add(lb_Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         lb_timeStart.setForeground(new java.awt.Color(255, 255, 255));
         lb_timeStart.setText("00.00");
-        add(lb_timeStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jPanel1.add(lb_timeStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         lb_TimeEnd.setForeground(new java.awt.Color(255, 255, 255));
         lb_TimeEnd.setText("03:00");
-        add(lb_TimeEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        jPanel1.add(lb_TimeEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
         lb_play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/play.png"))); // NOI18N
-        add(lb_play, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 40, 30));
+        lb_play.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_playMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_play, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 40, 30));
 
         lb_pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/pause.png"))); // NOI18N
-        add(lb_pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 50, 30));
+        lb_pause.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_pauseMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 50, 30));
 
         lb_previous.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/previous.png"))); // NOI18N
-        add(lb_previous, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 40, 30));
+        lb_previous.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_previousMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_previous, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 40, 30));
 
         lb_next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/next.png"))); // NOI18N
-        add(lb_next, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 20, 40, 30));
+        lb_next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_nextMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_next, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 20, 40, 30));
 
         lb_stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/stop.png"))); // NOI18N
-        add(lb_stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, 40, 30));
+        lb_stop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_stopMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 20, 40, 30));
 
         lb_mix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/mix.png"))); // NOI18N
-        add(lb_mix, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 50, 40));
+        lb_mix.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_mixMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_mix, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 50, 40));
 
         lb_Nomix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/no mix.png"))); // NOI18N
-        add(lb_Nomix, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 60, 40));
+        lb_Nomix.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_NomixMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_Nomix, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 60, 40));
 
         lb_repeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/repeat.png"))); // NOI18N
-        add(lb_repeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 10, -1, -1));
+        lb_repeat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_repeatMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_repeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 10, -1, -1));
 
         lb_repeatOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/repeat one.png"))); // NOI18N
-        add(lb_repeatOne, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, 40, 30));
+        lb_repeatOne.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_repeatOneMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_repeatOne, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, 40, 30));
 
         lb_NoRepeat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/no repeat.png"))); // NOI18N
-        add(lb_NoRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, 50, 30));
+        lb_NoRepeat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_NoRepeatMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lb_NoRepeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, 50, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/carbon_favorite.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 20, -1, -1));
+
+        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lb_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_playMouseClicked
+        lb_play.setVisible(false);
+        lb_pause.setVisible(true);
+    }//GEN-LAST:event_lb_playMouseClicked
+
+    private void lb_pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_pauseMouseClicked
+        lb_pause.setVisible(false);
+        lb_play.setVisible(true);
+    }//GEN-LAST:event_lb_pauseMouseClicked
+
+    private void lb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_stopMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_stopMouseClicked
+
+    private void lb_nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_nextMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_nextMouseClicked
+
+    private void lb_previousMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_previousMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_previousMouseClicked
+
+    private void lb_NomixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_NomixMouseClicked
+        lb_Nomix.setVisible(false);
+        lb_mix.setVisible(true);
+    }//GEN-LAST:event_lb_NomixMouseClicked
+
+    private void lb_mixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_mixMouseClicked
+        lb_Nomix.setVisible(true);
+        lb_mix.setVisible(false);
+    }//GEN-LAST:event_lb_mixMouseClicked
+
+    private void lb_repeatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_repeatMouseClicked
+        lb_repeat.setVisible(false);
+        lb_NoRepeat.setVisible(false);
+        lb_repeatOne.setVisible(true);
+    }//GEN-LAST:event_lb_repeatMouseClicked
+
+    private void lb_NoRepeatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_NoRepeatMouseClicked
+        lb_repeat.setVisible(true);
+        lb_NoRepeat.setVisible(false);
+        lb_repeatOne.setVisible(false);
+    }//GEN-LAST:event_lb_NoRepeatMouseClicked
+
+    private void lb_repeatOneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_repeatOneMouseClicked
+        lb_repeat.setVisible(false);
+        lb_NoRepeat.setVisible(true);
+        lb_repeatOne.setVisible(false);
+    }//GEN-LAST:event_lb_repeatOneMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lb_NoRepeat;
     private javax.swing.JLabel lb_Nomix;
     private javax.swing.JLabel lb_TimeEnd;

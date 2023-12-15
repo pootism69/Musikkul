@@ -7,8 +7,9 @@ package Menu_utama;
 import component.Music;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import model.Model_Artist;
 import model.Model_Music;
-import model.Model_Popular;
+import model.Model_Playlist;
 import projek_latih2.admin;
 
 
@@ -33,14 +34,14 @@ public class Home extends javax.swing.JPanel {
     private void init() {
        
         //masih manual, tapi kalo udah ada database, akan dibuatkan perulangan yang mengulang sebanyak playlist yang ada di database lalu mengambil nama playlist yang akan dimasukkan ke parameter.
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/1.png")), "Anggun", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/2.png")), "Iwan Fals", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/3.png")), "Evie Tamala", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/4.png")), "Inka Christie", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/5.png")), "Desy Ratnasari", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/Anggun.jpg")), "Betharia Sonata", "15 Albums | 17.5M Follower"), pn);
-        mostPopular2.addImage(new Model_Popular(new ImageIcon(getClass().getResource("/gambar/Anggun.jpg")), "Betharia Sonata", "15 Albums | 17.5M Follower"), pn);
-        
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Anggun", "15 Albums | 17.5M Follower"), pn);
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Nike Ardilla", "15 Albums | 17.5M Follower"), pn);
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Inka Christie", "15 Albums | 17.5M Follower"), pn);
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Nicky Astria", "15 Albums | 17.5M Follower"), pn);
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Melly Goeslaw", "15 Albums | 17.5M Follower"), pn);
+       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Poppy Mercury", "15 Albums | 17.5M Follower"), pn);
+       
+       music1.getList().getSelectedIndex();
         
         
     }
@@ -62,12 +63,10 @@ public class Home extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        mostPopular2 = new component.MostPopular();
         music1 = new component.Music();
+        mostArtist1 = new component.MostArtist();
 
         setLayout(new java.awt.CardLayout());
 
@@ -95,54 +94,29 @@ public class Home extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jLabel3.setText("Favourite");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Home");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Playlist");
+        jLabel5.setText("Artist");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(music1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mostPopular2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(music1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 836, Short.MAX_VALUE)))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(mostArtist1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,13 +126,11 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(2, 2, 2)
-                .addComponent(mostPopular2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostArtist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(music1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -168,13 +140,11 @@ public class Home extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private component.MostPopular mostPopular2;
+    private component.MostArtist mostArtist1;
     private component.Music music1;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,9 +18,9 @@ public class AdminPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminPanel
      */
-    private JFrame frame;
+    private final JFrame frame;
     
-    private Home home = new Home();
+    private final Home home = new Home();
     public AdminPanel(JFrame frame) {
         this.frame = frame;
         initComponents();

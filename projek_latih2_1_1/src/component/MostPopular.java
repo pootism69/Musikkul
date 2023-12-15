@@ -3,7 +3,7 @@ package component;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import model.Model_Popular;
+import model.Model_Playlist;
 
 public class MostPopular extends javax.swing.JLayeredPane {
 
@@ -49,7 +49,7 @@ public class MostPopular extends javax.swing.JLayeredPane {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void addImage(Model_Popular data, JPanel pn) {
+    public void addImage(Model_Playlist data, JPanel pn) {
         ItemImage item = new ItemImage(pn);
         item.setData(data);
         panel.add(item);

@@ -11,13 +11,12 @@ public class MusicDownload extends javax.swing.JPanel {
         
     }
     
-
+    Model_Music data = new Model_Music("1", "peace of Mind", "03:00");
     public void init() {
         //Masih manual
         //rencananya buat variabel yang bakal nyimpen judul lagu, artist, dll (menyesuaikan sama model).Nanti variabel itu bakal jadi parameter atau nggak langsung ke database bisa.
-        listMusicDownload1.addItem(new Model_Music("1", "Peace Of Mind (feat. Vargas & Lagola)", "03:00"));
-        listMusicDownload1.addItem(new Model_Music("2", "Heaven", "04:37"));
-        listMusicDownload1.addItem(new Model_Music("3", "SOS (feat. Aloe Blacc)", "02:37"));
+        
+        listMusicDownload1.addItem(data);
         
        
        
@@ -29,6 +28,10 @@ public class MusicDownload extends javax.swing.JPanel {
     
     public void init(String no, String title, String time) {
         listMusicDownload1.addItem(new Model_Music(no, title, time));
+    }
+    
+    public Model_Music getModelMusic(){
+        return data;
     }
 
     @SuppressWarnings("unchecked")
@@ -61,19 +64,7 @@ public class MusicDownload extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listMusicDownload1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMusicDownload1MouseClicked
-       int index =  listMusicDownload1.getSelectedIndex();
-       int maxIndex = listMusicDownload1.getModel().getSize() - 1;
-       
-       if (index != -1){
-          String s = listMusicDownload1.getData().getName();
-          panelBottom.getlb_Title().setText(s);
-           
-       }
-       if(index == maxIndex){
-           String s = listMusicDownload1.getData().getName();
-           panelBottom.getlb_Title().setText(s);
-       }
-          
+        
            
       
     }//GEN-LAST:event_listMusicDownload1MouseClicked

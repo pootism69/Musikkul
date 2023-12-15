@@ -6,7 +6,10 @@
 package Menu_utama;
 
 import component.bottomMenu;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import model.Model_Music;
+import model.Model_Playlist;
 
 /**
  *
@@ -17,10 +20,24 @@ public class Download extends javax.swing.JPanel {
     /**
      * Creates new form Download
      */
-    public Download(bottomMenu panel) {
+    JPanel pn;
+    bottomMenu bottomMenu;
+    public Download(bottomMenu panel, JPanel pn) {
         initComponents();
         musicDownload1.init(panel);
+        mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+        mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+        mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+        mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+        mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+        this.pn = pn;
+        this.bottomMenu = panel;
+        
     }
+
+    
+    
+    
     
     
 
@@ -34,32 +51,54 @@ public class Download extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        bt_addPlaylist = new javax.swing.JLabel();
         musicDownload1 = new component.MusicDownload();
+        jLabel1 = new javax.swing.JLabel();
+        lb_playlist = new javax.swing.JLabel();
+        mostPopular1 = new component.MostPopular();
 
         setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(19, 19, 44));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(musicDownload1, javax.swing.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(musicDownload1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(358, Short.MAX_VALUE))
-        );
+        bt_addPlaylist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/plus_1.png"))); // NOI18N
+        bt_addPlaylist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_addPlaylistMouseClicked(evt);
+            }
+        });
+        jPanel1.add(bt_addPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 160, -1, -1));
+        jPanel1.add(musicDownload1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 350, 1087, 257));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Download");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 21, -1, -1));
+
+        lb_playlist.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        lb_playlist.setForeground(new java.awt.Color(255, 255, 255));
+        lb_playlist.setText("Playlist");
+        jPanel1.add(lb_playlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 75, -1, -1));
+        jPanel1.add(mostPopular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1087, -1));
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_addPlaylistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_addPlaylistMouseClicked
+       pn.removeAll();
+       pn.add(new AddPlaylist(pn));
+       pn.repaint();
+       pn.revalidate();
+    }//GEN-LAST:event_bt_addPlaylistMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bt_addPlaylist;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lb_playlist;
+    private component.MostPopular mostPopular1;
     private component.MusicDownload musicDownload1;
     // End of variables declaration//GEN-END:variables
 }

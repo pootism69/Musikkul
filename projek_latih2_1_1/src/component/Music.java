@@ -34,6 +34,10 @@ public class Music extends javax.swing.JPanel {
     public void init(String no, String title, String time) {
         listMusic1.addItem(new Model_Music(no, title, time));
     }
+    
+    public ListMusic getList(){
+        return listMusic1;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

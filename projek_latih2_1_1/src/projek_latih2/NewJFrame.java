@@ -1,27 +1,35 @@
 
 package projek_latih2;
-import Menu_utama.Playlist;
+
 import Menu_utama.Search;
 import Menu_utama.Home;
-import Menu_utama.Artist;
 import Menu_utama.Download;
 import java.awt.Color;
 import Method.ScrollBar;
 import component.bottomMenu;
 import java.awt.Color;
+import model.Model_Music;
 /**
  *
  * @author Adrian Aditya P
  */
+
 public class NewJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
+    
     public NewJFrame() {
         initComponents();
         init();
         //setBackground(new Color(0,0,0,0));
+        L_Home.setForeground(new Color(44,25,55));
+
+        pn_utama.removeAll();
+        pn_utama.add(new Home(pn_utama));
+        pn_utama.repaint();
+        pn_utama.revalidate();
     }
     private void init(){
         ps_utama.setVerticalScrollBar(new ScrollBar());
@@ -29,6 +37,8 @@ public class NewJFrame extends javax.swing.JFrame {
     public bottomMenu getbottomMenu(){
         return bottomMenu2;
     }
+    
+   
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,13 +56,9 @@ public class NewJFrame extends javax.swing.JFrame {
         L_Home = new javax.swing.JLabel();
         pn_Search = new javax.swing.JPanel();
         L_Search = new javax.swing.JLabel();
-        pn_Artist = new javax.swing.JPanel();
-        L_Artist = new javax.swing.JLabel();
-        pn_Playlist = new javax.swing.JPanel();
-        L_Playlist = new javax.swing.JLabel();
-        lb_ikon = new javax.swing.JLabel();
         pn_download = new javax.swing.JPanel();
         L_Download = new javax.swing.JLabel();
+        lb_ikon = new javax.swing.JLabel();
         pn_kanan = new javax.swing.JPanel();
         ps_utama = new javax.swing.JScrollPane();
         pn_utama = new javax.swing.JPanel();
@@ -117,87 +123,6 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pn_SearchLayout = new javax.swing.GroupLayout(pn_Search);
-        pn_Search.setLayout(pn_SearchLayout);
-        pn_SearchLayout.setHorizontalGroup(
-            pn_SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_SearchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pn_SearchLayout.setVerticalGroup(
-            pn_SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_SearchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Search)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        L_Artist.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        L_Artist.setText("> Artist");
-        L_Artist.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                L_ArtistMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                L_ArtistMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                L_ArtistMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pn_ArtistLayout = new javax.swing.GroupLayout(pn_Artist);
-        pn_Artist.setLayout(pn_ArtistLayout);
-        pn_ArtistLayout.setHorizontalGroup(
-            pn_ArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_ArtistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Artist, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pn_ArtistLayout.setVerticalGroup(
-            pn_ArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_ArtistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Artist)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        L_Playlist.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        L_Playlist.setText("> Playlist");
-        L_Playlist.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                L_PlaylistMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                L_PlaylistMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                L_PlaylistMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pn_PlaylistLayout = new javax.swing.GroupLayout(pn_Playlist);
-        pn_Playlist.setLayout(pn_PlaylistLayout);
-        pn_PlaylistLayout.setHorizontalGroup(
-            pn_PlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_PlaylistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pn_PlaylistLayout.setVerticalGroup(
-            pn_PlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_PlaylistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(L_Playlist)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        lb_ikon.setText("jLabel2");
-
         L_Download.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         L_Download.setText("> Download");
         L_Download.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,14 +154,34 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout pn_SearchLayout = new javax.swing.GroupLayout(pn_Search);
+        pn_Search.setLayout(pn_SearchLayout);
+        pn_SearchLayout.setHorizontalGroup(
+            pn_SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_SearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(L_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pn_download, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pn_SearchLayout.setVerticalGroup(
+            pn_SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_SearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(L_Search)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pn_download, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lb_ikon.setText("jLabel2");
+
         javax.swing.GroupLayout pn_kiriLayout = new javax.swing.GroupLayout(pn_kiri);
         pn_kiri.setLayout(pn_kiriLayout);
         pn_kiriLayout.setHorizontalGroup(
             pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pn_Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pn_Search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pn_Artist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pn_Playlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_kiriLayout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(lb_ikon, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,7 +190,6 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pn_download, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pn_kiriLayout.setVerticalGroup(
             pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,13 +202,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(pn_Home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pn_Artist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pn_Playlist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pn_download, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         pn_atas.add(pn_kiri, java.awt.BorderLayout.LINE_START);
@@ -308,6 +246,7 @@ public class NewJFrame extends javax.swing.JFrame {
         getContentPane().add(pn_bawah, java.awt.BorderLayout.PAGE_END);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void L_HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_HomeMouseClicked
@@ -344,45 +283,11 @@ public class NewJFrame extends javax.swing.JFrame {
         L_Search.setForeground(new Color(144,144,144));
     }//GEN-LAST:event_L_SearchMouseExited
 
-    private void L_ArtistMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_ArtistMouseExited
-        L_Artist.setForeground(new Color(144,144,144));
-    }//GEN-LAST:event_L_ArtistMouseExited
-
-    private void L_ArtistMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_ArtistMouseEntered
-        L_Artist.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_L_ArtistMouseEntered
-
-    private void L_ArtistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_ArtistMouseClicked
-        L_Artist.setForeground(new Color(44,25,55));
-
-        pn_utama.removeAll();
-        pn_utama.add(new Artist());
-        pn_utama.repaint();
-        pn_utama.revalidate();
-    }//GEN-LAST:event_L_ArtistMouseClicked
-
-    private void L_PlaylistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_PlaylistMouseClicked
-        L_Playlist.setForeground(new Color(44,25,55));
-
-        pn_utama.removeAll();
-        pn_utama.add(new Playlist());
-        pn_utama.repaint();
-        pn_utama.revalidate();
-    }//GEN-LAST:event_L_PlaylistMouseClicked
-
-    private void L_PlaylistMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_PlaylistMouseEntered
-        L_Playlist.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_L_PlaylistMouseEntered
-
-    private void L_PlaylistMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_PlaylistMouseExited
-        L_Playlist.setForeground(new Color(144,144,144));
-    }//GEN-LAST:event_L_PlaylistMouseExited
-
     private void L_DownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_DownloadMouseClicked
         L_Download.setForeground(new Color(44,25,55));
 
         pn_utama.removeAll();
-        pn_utama.add(new Download(bottomMenu2));
+        pn_utama.add(new Download(bottomMenu2, pn_utama));
         pn_utama.repaint();
         pn_utama.revalidate();
     }//GEN-LAST:event_L_DownloadMouseClicked
@@ -433,17 +338,13 @@ public class NewJFrame extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel L_Artist;
     private javax.swing.JLabel L_Download;
     private javax.swing.JLabel L_Home;
-    private javax.swing.JLabel L_Playlist;
     private javax.swing.JLabel L_Search;
     private component.bottomMenu bottomMenu2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lb_ikon;
-    private javax.swing.JPanel pn_Artist;
     private javax.swing.JPanel pn_Home;
-    private javax.swing.JPanel pn_Playlist;
     private javax.swing.JPanel pn_Search;
     private javax.swing.JPanel pn_atas;
     private javax.swing.JPanel pn_bawah;

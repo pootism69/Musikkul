@@ -1,7 +1,7 @@
 package component;
 
 import Menu_utama.FillPlaylist;
-import model.Model_Popular;
+import model.Model_Playlist;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -28,13 +28,12 @@ public class ItemImage extends javax.swing.JPanel {
         setMaximumSize(new Dimension(350, 200));
         setMinimumSize(new Dimension(350, 200));
     }
-    private Model_Popular data;
+    private Model_Playlist data;
 
-    public void setData(Model_Popular data) {
+    public void setData(Model_Playlist data) {
         this.data = data;
         lbTitle.setText(data.getTitle());
-        lbDescription.setText(data.getDescription());
-        repaint();
+        
     }
 
     @Override
@@ -72,7 +71,6 @@ public class ItemImage extends javax.swing.JPanel {
     private void initComponents() {
 
         lbTitle = new javax.swing.JLabel();
-        lbDescription = new javax.swing.JLabel();
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,36 +86,27 @@ public class ItemImage extends javax.swing.JPanel {
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTitle.setText("Title");
 
-        lbDescription.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
-        lbDescription.setForeground(new java.awt.Color(255, 255, 255));
-        lbDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbDescription.setText("Description");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                    .addComponent(lbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE)
                 .addComponent(lbTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbDescription)
-                .addGap(20, 20, 20))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         pn.removeAll();
-        pn.add(new FillPlaylist(data));
+        pn.add(new FillPlaylist(data, pn));
         pn.repaint();
         pn.revalidate();
     }//GEN-LAST:event_formMouseClicked
@@ -128,7 +117,6 @@ public class ItemImage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbDescription;
     private javax.swing.JLabel lbTitle;
     // End of variables declaration//GEN-END:variables
 }

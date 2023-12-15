@@ -1,7 +1,13 @@
 package component;
 
+import Method.JOption;
 import model.Model_Music;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultListCellRenderer;
@@ -23,8 +29,11 @@ public class ListMusic<E extends Object> extends JList<E> {
             @Override
             public void mouseClicked(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
-                    playIndex = locationToIndex(me.getPoint());
+                    int clickedIndex = locationToIndex(me.getPoint());
+                    playIndex = clickedIndex;
                     repaint();
+
+                    
                 }
             }
         });
@@ -43,6 +52,7 @@ public class ListMusic<E extends Object> extends JList<E> {
                 }
                 ItemMusic item = new ItemMusic(data);
                 item.setPlay(index == playIndex);
+                item.setDownload(index == playIndex);
                 return item;
             }
         };
@@ -51,7 +61,7 @@ public class ListMusic<E extends Object> extends JList<E> {
     public void addItem(Model_Music data) {
         model.addElement(data);
     }
-    
+
     void removeAllItems() {
         model.clear();
         repaint();
