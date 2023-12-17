@@ -6,6 +6,7 @@ package component;
 
 import javax.swing.JLabel;
 import model.Model_Music;
+import model.*;
 import projek_latih2.login;
 
 /**
@@ -17,6 +18,7 @@ public class bottomMenu extends javax.swing.JPanel {
     /**
      * Creates new form bottomMenu
      */
+    Model_User Musikk = new Model_User();
     public bottomMenu() {
         initComponents();
         lb_play.setVisible(true);
@@ -26,6 +28,7 @@ public class bottomMenu extends javax.swing.JPanel {
         lb_NoRepeat.setVisible(true);
         lb_repeat.setVisible(false);
         lb_repeatOne.setVisible(false);
+        
         
     }
     
@@ -164,16 +167,20 @@ public class bottomMenu extends javax.swing.JPanel {
 
     private void lb_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_playMouseClicked
         lb_play.setVisible(false);
-        lb_pause.setVisible(true);
+        lb_pause.setVisible(true);        
+        Musikk.play();     
+        
     }//GEN-LAST:event_lb_playMouseClicked
 
     private void lb_pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_pauseMouseClicked
         lb_pause.setVisible(false);
         lb_play.setVisible(true);
+        Musikk.pause();
     }//GEN-LAST:event_lb_pauseMouseClicked
 
     private void lb_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_stopMouseClicked
         // TODO add your handling code here:
+        Musikk.stop();        
     }//GEN-LAST:event_lb_stopMouseClicked
 
     private void lb_nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_nextMouseClicked
@@ -210,6 +217,7 @@ public class bottomMenu extends javax.swing.JPanel {
         lb_repeat.setVisible(false);
         lb_NoRepeat.setVisible(true);
         lb_repeatOne.setVisible(false);
+        Musikk.repeatSatuMusik();
     }//GEN-LAST:event_lb_repeatOneMouseClicked
 
 
