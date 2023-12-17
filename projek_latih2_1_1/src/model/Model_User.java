@@ -28,7 +28,7 @@ public class Model_User {
        fileMusik = new File("D:\\y2mate.com - Eluveitie  Memento.mp3");
        player.addToPlayList(fileMusik);
        //String fileName = songFile.getName();
-        // Here set our song name label with this name
+        // Aku gatau jTextFieldnya yg mana wkwkw, ditambahinnya d jFramenya aja
         //songNameDisplay.setText(fileName);
     }
     public static int getId() {
@@ -72,14 +72,14 @@ public class Model_User {
             repeat = true;
             player.setRepeat(repeat);
             
-            //gatau image yg mana buat repeat
+            //gatau image yg mana buat repeat banh, ditambahinnya d jFramenya aja
             //String image = currentPath+imagePath+"\\repeat_enabled.png";
             //repeatBtn.setIcon(new ImageIcon(image));
         }else if(repeat == true){
             repeat = false;
             player.setRepeat(repeat);
             
-            //gatau image yg mana buat repeat
+            //gatau image yg mana buat repeat banh, ditambahinnya d jFramenya aja
             //String image = currentPath+imagePath+"\\repeat.png";
             //repeatBtn.setIcon(new ImageIcon(image));            
         }
