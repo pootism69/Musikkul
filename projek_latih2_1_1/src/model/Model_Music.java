@@ -5,11 +5,11 @@ import java.io.File;
 public class Model_Music {
     private String no;
     private String name;
-    private String time;
+    private int time;
     
     File fileMusik;
 
-    public Model_Music(String no, String name, String time, String nama, String penyanyi, String album, String genre, String lirik, String link, String directory) {
+    public Model_Music(String no, String name, int time, String nama, String penyanyi, String album, String genre, String lirik, String link, String directory) {
         this.no = no;
         this.name = name;
         this.time = time;
@@ -28,6 +28,7 @@ public class Model_Music {
     private String lirik;
     private String link;
     private String directory;
+    private int ID;
 
     public String getNama() {
         return nama;
@@ -86,7 +87,7 @@ public class Model_Music {
     }
    
     
-    public Model_Music(String no, String name, String time) {
+    public Model_Music(String no, String name, int time) {
         this.no = no;
         this.name = name;
         this.time = time;
@@ -111,12 +112,28 @@ public class Model_Music {
         this.name = name;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
+    }
+
+    public File getFileMusik() {
+        return fileMusik;
+    }
+
+    public void setFileMusik(File fileMusik) {
+        this.fileMusik = fileMusik;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
 

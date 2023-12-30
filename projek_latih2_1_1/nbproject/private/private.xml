@@ -3,11 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Pemrograman/Tubes(Semester%205)/PBO/Aplikasi%20Musikku/Musikkul/projek_latih2_1_1/src/model/Model_Music.java</file>
-            <file>file:/D:/Pemrograman/Tubes(Semester%205)/PBO/Aplikasi%20Musikku/Musikkul/projek_latih2_1_1/src/model/Model_User.java</file>
-            <file>file:/D:/Pemrograman/Tubes(Semester%205)/PBO/Aplikasi%20Musikku/Musikkul/projek_latih2_1_1/src/model/Model_Filter_Musik.java</file>
-            <file>file:/D:/Pemrograman/Tubes(Semester%205)/PBO/Aplikasi%20Musikku/Musikkul/projek_latih2_1_1/src/component/bottomMenu.java</file>
-            <file>file:/D:/Pemrograman/Tubes(Semester%205)/PBO/Aplikasi%20Musikku/Musikkul/projek_latih2_1_1/src/projek_latih2/percobaanbuatImran.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/Home.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/component/Music.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/component/MusicSearch.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/component/ListMusic.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/FillArtist.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/component/ListMusicDownload.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/AdminPanel.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Database/NewMain.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/projek_latih2/login.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/LoginPanel.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/model/Model_User.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/Download.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Database/Database.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/projek_latih2/percobaanbuatImran.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/AddPlaylist.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/model/Model_Music.java</file>
+            <file>file:/C:/Users/ASUS/Downloads/Musikkul/projek_latih2_1_1/src/Menu_utama/FillPlaylist.java</file>
         </group>
     </open-files>
 </project-private>

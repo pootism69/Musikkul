@@ -25,8 +25,7 @@ public class Model_User {
     private String username;
     private String password;
     public Model_User(){
-       fileMusik = new File("D:\\y2mate.com - Eluveitie  Memento.mp3");
-       player.addToPlayList(fileMusik);
+       
        //String fileName = songFile.getName();
         // Aku gatau jTextFieldnya yg mana wkwkw, ditambahinnya d jFramenya aja
         //songNameDisplay.setText(fileName);
