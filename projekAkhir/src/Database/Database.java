@@ -177,16 +177,16 @@ public class Database {
         return null;
     }
     
-    public boolean InsertMusic(Model_Music music) throws SQLException, ClassNotFoundException{
+    public boolean InsertMusic(Model_Music music, int ID) throws SQLException, ClassNotFoundException{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(JDBC_URL, "root","");
             
-            if (!checkDBInt("song", "songID", music.getID() )){
+            if (!checkDBInt("song", "songID", ID )){
                 String sql = "INSERT INTO song" + " (SongID, name, duration, artist, genre, times_played, Link_Lagu, Link_Gambar, Lirik)"
                         + " VALUES(?,?,?,?,?,?,?,?,?);";
                 PreparedStatement st = con.prepareStatement(sql);
-                st.setInt(1, music.getID());
+                st.setInt(1, ID);
                 st.setString(2, music.getNama());
                 st.setString(3, music.getTime());
                 st.setString(4, music.getPenyanyi());
@@ -302,6 +302,26 @@ public class Database {
         }
         return false;
     }
+    
+     public boolean deleteMusic(int ID){
+         try{
+             Class.forName("com.mysql.cj.jdbc.Driver");
+             Connection con = DriverManager.getConnection(JDBC_URL, "root","");
+             
+             if(this.checkDBInt("song", "songID", ID)){
+                 String sql = "DELETE FROM song WHERE songID =" + ID + ";";
+                 PreparedStatement st = con.prepareStatement(sql);
+                 st.executeUpdate();
+                 return true;
+             }
+             
+             
+         } catch (Exception e){
+             e.printStackTrace();
+         }
+         return false;
+         
+     }
     
     
     
