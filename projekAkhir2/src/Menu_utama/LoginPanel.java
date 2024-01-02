@@ -10,6 +10,11 @@ import javax.swing.JFrame;
 import projek_latih2.login;
 import Method.*;
 import projek_latih2.NewJFrame;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +26,7 @@ public class LoginPanel extends javax.swing.JPanel {
      * Creates new form LoginPanel
      */
     private JFrame frame;
+    Database db = new Database();
     public LoginPanel(JFrame frame) {
         this.frame = frame;
         initComponents();
@@ -30,6 +36,7 @@ public class LoginPanel extends javax.swing.JPanel {
         
         jPanel1.setOpaque(false);
         jPanel1.setBackground(new Color(0,0,0,0));
+        
     }
 
     /**
@@ -210,11 +217,25 @@ public class LoginPanel extends javax.swing.JPanel {
         msg.warning(this, "Sorry, username or password is incorrect");
         */
         
-        NewJFrame frameHome = new NewJFrame();
-        frameHome.setVisible(true);
-        frameHome.revalidate();
+        if (db.loginDB(tx_username.getText(), tx_pass.getText()) == 2){
+            try {
+                NewJFrame frameHome = new NewJFrame();
+                frameHome.setVisible(true);
+                frameHome.revalidate();
+                
+                frame.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (db.loginDB(tx_username.getText(), tx_pass.getText()) == 0){
+            JOption msg = new JOption();
+            msg.warning(this, "Sorry, username or password is incorrect");
+        }
         
-        frame.dispose();
+        
+        
+        
+        
         
     }//GEN-LAST:event_bt_loginActionPerformed
 

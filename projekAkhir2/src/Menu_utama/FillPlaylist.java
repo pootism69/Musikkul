@@ -11,6 +11,12 @@ import javax.swing.JPanel;
 import model.Model_Music;
 import model.Model_Playlist;
 import model.Model_User;
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class FillPlaylist extends javax.swing.JPanel {
@@ -20,23 +26,44 @@ public class FillPlaylist extends javax.swing.JPanel {
     Model_Playlist data;
     MP3Player player = new MP3Player();
     private DefaultListModel<String> listModel;
+    private DefaultListModel<Model_Music> listMusic;
     Model_User user = new Model_User(player);
+    Database db = new Database();
     int j = 0;
+    Model_Music ms;
     
-    
-    public FillPlaylist( Model_Playlist data, JPanel pn) {
+    public FillPlaylist( Model_Playlist data, JPanel pn) throws ClassNotFoundException, SQLException {
         listModel = new DefaultListModel<>();
+        listMusic = new DefaultListModel<>();
+        
         initComponents();
         this.panel = pn;
         this.data = data;
         L_playlistName.setText(data.getTitle().trim());
+
+ 
         
         // Tambahkan lagu ke playlist dan JList
         //jika sudah ada databasenya mungkin parameternya dari value kolom-kolom di databasenya
-        user.addMusik(new Model_Music("1", "Mary on a", "03:00", "D:\\lagu1.mp3"));
-        listModel.addElement("Mary on a.mp3");//judul lagunya
-        user.addMusik(new Model_Music("2", "cupid", "03:00", "D:\\lagu2.mp3"));
-        listModel.addElement("Cupid");
+        ResultSet rs = db.getUserMusic(Database.getIDAccUser());
+        while(rs.next()){
+            ResultSet ps = db.getDB("playlistsong");
+            while(ps.next()){
+                int x = rs.getInt("SongID");
+                if(ps.getInt("PlaylistID") == data.getID()){
+                    if(ps.getInt("SongID") == x){
+                        System.out.println("song checked");
+                        user.addMusik(new Model_Music(rs.getInt("SongID"), rs.getString("name"), rs.getInt("duration"), rs.getString("local_Dir")));
+                        listModel.addElement(rs.getString("name"));
+                        ms = new Model_Music();
+                        ms.setNo(rs.getInt("SongID"));
+                        ms.setName(rs.getString("name"));
+                        listMusic.addElement(ms);
+                        
+                    }
+                }
+            }
+        }
         
         
         
@@ -138,6 +165,11 @@ public class FillPlaylist extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        MusicPlaylist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MusicPlaylistMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(MusicPlaylist);
 
         javax.swing.GroupLayout pnFillLayout = new javax.swing.GroupLayout(pnFill);
@@ -172,10 +204,16 @@ public class FillPlaylist extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_addsongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_addsongMouseClicked
-       panel.removeAll();
-       panel.add(new ChooseMusic(panel, data));
-       panel.repaint();
-       panel.revalidate();
+        try {
+            panel.removeAll();
+            panel.add(new ChooseMusic(panel, data));
+            panel.repaint();
+            panel.revalidate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FillPlaylist.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FillPlaylist.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_addsongMouseClicked
 
     private void bt_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_playMouseClicked
@@ -212,6 +250,11 @@ public class FillPlaylist extends javax.swing.JPanel {
         j++;
         MusicPlaylist.setSelectedIndex(j);
     }//GEN-LAST:event_bt_forwardMouseClicked
+
+    private void MusicPlaylistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicPlaylistMouseClicked
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_MusicPlaylistMouseClicked
         private void playSelectedSongForward(String song) {
         // Dapatkan indeks lagu yang akan diputar
         int index = listModel.indexOf(song);

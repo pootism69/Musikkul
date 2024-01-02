@@ -3,12 +3,15 @@ package projek_latih2;
 
 import Menu_utama.Search;
 import Menu_utama.Home;
-import Menu_utama.Download;
+
 import Menu_utama.Download1;
 import java.awt.Color;
 import Method.ScrollBar;
-import component.bottomMenu;
 import java.awt.Color;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Model_Music;
 /**
  *
@@ -21,7 +24,7 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     Model_Music musicUser;
-    public NewJFrame() {
+    public NewJFrame() throws SQLException {
         initComponents();
         init();
         //setBackground(new Color(0,0,0,0));
@@ -247,12 +250,16 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L_HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_HomeMouseClicked
-        L_Home.setForeground(new Color(44,25,55));
-
-        pn_utama.removeAll();
-        pn_utama.add(new Home(pn_utama));
-        pn_utama.repaint();
-        pn_utama.revalidate();
+        try {
+            L_Home.setForeground(new Color(44,25,55));
+            
+            pn_utama.removeAll();
+            pn_utama.add(new Home(pn_utama));
+            pn_utama.repaint();
+            pn_utama.revalidate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_L_HomeMouseClicked
 
     private void L_HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_HomeMouseEntered
@@ -281,12 +288,20 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_L_SearchMouseExited
 
     private void L_DownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_DownloadMouseClicked
-        L_Download.setForeground(new Color(44,25,55));
-        
-        pn_utama.removeAll();
-        pn_utama.add(new Download1(pn_utama));
-        pn_utama.repaint();
-        pn_utama.revalidate();
+        try {
+            L_Download.setForeground(new Color(44,25,55));
+            
+            pn_utama.removeAll();
+            pn_utama.add(new Download1(pn_utama));
+            pn_utama.repaint();
+            pn_utama.revalidate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_L_DownloadMouseClicked
 

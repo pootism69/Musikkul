@@ -5,18 +5,31 @@ package Menu_utama;
  *
  * @author Adrian Aditya P
  */
+import Database.Database;
 import component.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import model.Model_Music;
+
 
 
 public class Search extends javax.swing.JPanel {
 
    
     private DefaultListModel<String> listModel;
+    private DefaultListModel<Model_Music> listMusic;
+    Database db = new Database();
+    boolean check;
+    Model_Music ms;
     
     public Search() {
         listModel = new DefaultListModel<>();
+        listMusic = new DefaultListModel<>();
+        
         initComponents();
         
     }
@@ -91,18 +104,34 @@ public class Search extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lb_SearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_SearchMouseClicked
-       String title = tx_searchSong.getText();
+       listModel.clear();
+        String title = tx_searchSong.getText();
+       
 
         if(title.equals("Song Title - Song Artist")){
             
         }else if(title.equals("")){
             
         }else{
-            //mekanisme mencari lagu
-            
-            //jika lagu ketemu
-            listModel.addElement(title);
-            MusicListSearch.setModel(listModel);
+           try {
+               check = false;
+               String sql = " name = '" + title + "' OR artist = '" + title +"';";
+               
+               ResultSet rs = db.getDBWhere("song", sql);
+               
+               while(rs.next()){
+                   listModel.addElement(rs.getString("name"));
+                   ms = new Model_Music();
+                   ms.setName(rs.getString("name"));
+                   ms.setPenyanyi(rs.getString("artist"));
+                   ms.setNo(rs.getInt("songID"));
+                   ms.setLink(rs.getString("Link_Lagu"));
+                   listMusic.addElement(ms);
+               }
+               MusicListSearch.setModel(listModel);
+           } catch (SQLException ex) {
+               Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+           }
            
         }
         
@@ -123,15 +152,35 @@ public class Search extends javax.swing.JPanel {
     }//GEN-LAST:event_tx_searchSongFocusLost
 
     private void MusicListSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicListSearchMouseClicked
-        int selectedIndex = MusicListSearch.getSelectedIndex();
-        
-        //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
-        
-        
-        //ketika berhasil
-        if(selectedIndex != -1){
-            JOptionPane.showMessageDialog(null, "song successfully downloaded");
+        try {
+            check = false;
+            int selectedIndex = MusicListSearch.getSelectedIndex();
+            
+            //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
+            ResultSet rs = db.getDB("usersong");
+            while(rs.next()){
+                if(rs.getInt("userID") == Database.getIDAccUser()){
+                    if(rs.getInt("SongID") == listMusic.getElementAt(selectedIndex).getNo()){
+                        check = true;
+                    }
+                }
+            }
+            if (!check){
+                String Dir = db.Download(listMusic.getElementAt(selectedIndex).getLink(), listMusic.getElementAt(selectedIndex).getName());
+                db.insertMusicToUser(Database.getIDAccUser(), listMusic.getElementAt(selectedIndex).getNo(), Dir);
+                listMusic.getElementAt(selectedIndex).setDirectory("./src/Music/" + listMusic.getElementAt(selectedIndex).getName() + ".mp3");
+                JOptionPane.showMessageDialog(null, "song successfully downloaded");
+            } else{
+                JOptionPane.showMessageDialog(null, "song already added");;
+            }
+            
+            
+            //ketika berhasil
+            
+        } catch(Exception e){
+            e.printStackTrace();
         }
+
         
     }//GEN-LAST:event_MusicListSearchMouseClicked
 

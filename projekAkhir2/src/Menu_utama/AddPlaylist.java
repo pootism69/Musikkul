@@ -5,8 +5,13 @@
  */
 package Menu_utama;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Database.Database;
 
 /**
  *
@@ -18,6 +23,7 @@ public class AddPlaylist extends javax.swing.JPanel {
      * Creates new form AddPlaylist
      */
     JPanel pn;
+    Database db = new Database();
     
     
     public AddPlaylist( JPanel pn) {
@@ -78,12 +84,25 @@ public class AddPlaylist extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
-        JOptionPane.showMessageDialog(null, "Playlist created");
-        
-       pn.removeAll();
-       pn.add(new Download1(pn));
-       pn.repaint();
-       pn.revalidate();
+        try {
+            if (db.createPlaylist(jTextField1.getText(), Database.getIDAccUser())){
+                JOptionPane.showMessageDialog(null, "Playlist created");
+                 pn.removeAll();
+                 pn.add(new Download1(pn));
+                 pn.repaint();
+                 pn.revalidate();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+            
+           
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddPlaylist.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddPlaylist.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddPlaylist.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_saveActionPerformed
 
 

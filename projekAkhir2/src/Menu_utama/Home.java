@@ -8,7 +8,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Model_Artist;
 import model.Model_Music;
-
+import Database.Database;
+import com.mysql.cj.protocol.Resultset;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import projek_latih2.admin;
 
 
@@ -18,16 +31,35 @@ public class Home extends javax.swing.JPanel {
     //pn itu buat merubah tampilan pn_utama di NewJframe supaya pn_utama berganti.
     private JPanel pn;
     private DefaultListModel<String> listModel;
+    private DefaultListModel<Model_Music> listMusic;
+    Database db = new Database();
+    boolean check;
+    Model_Music ms;
     
-    public Home(JPanel pn) {
+    public Home(JPanel pn) throws SQLException {
         initComponents();
         this.pn = pn;
         listModel = new DefaultListModel<>();
+        listMusic = new DefaultListModel<>();
+        check = false;
+
+        ResultSet rs = db.getDB("song");
+        while(rs.next()){
+            listModel.addElement(rs.getString("name"));
+            ms = new Model_Music();
+            ms.setName(rs.getString("name"));
+            ms.setPenyanyi(rs.getString("artist"));
+            ms.setNo(rs.getInt("songID"));
+            ms.setLink(rs.getString("Link_Lagu"));
+            listMusic.addElement(ms);
+        }
+        
         init();
         
         //Karena ini tidak berkaitan dengan MP3 (pemutaran lagu) jadi cuma nampilin judulnya aja
-        listModel.addElement("Mary on a");//judul lagunya
-        listModel.addElement("Cupid");
+        //judul lagunya
+        
+        
         
         
         MusicList.setModel(listModel);
@@ -41,18 +73,19 @@ public class Home extends javax.swing.JPanel {
     private void init() {
        
         //Menampilkan artis (paling nanti yang diganti cuma nama artisnya aja, kalo deskripsi mungkin nanti bisa dihapus)
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Anggun", "15 Albums | 17.5M Follower"), pn);
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Nike Ardilla", "15 Albums | 17.5M Follower"), pn);
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Inka Christie", "15 Albums | 17.5M Follower"), pn);
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Nicky Astria", "15 Albums | 17.5M Follower"), pn);
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Melly Goeslaw", "15 Albums | 17.5M Follower"), pn);
-       mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), "Poppy Mercury", "15 Albums | 17.5M Follower"), pn);
+       int i = 0;
+       while(i < listMusic.size()){
+           mostArtist1.addImage(new Model_Artist(new ImageIcon(getClass().getResource("/gambar/Artist.png")), listMusic.getElementAt(i).getPenyanyi(), ""), pn);
+           i++;
+       }
+       
        
       
        
         
         
     }
+    
     
     
     
@@ -162,13 +195,35 @@ public class Home extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MusicListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicListMouseClicked
-        int selectedIndex = MusicList.getSelectedIndex();
-        
-        //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
-        
-        
-        //ketika berhasil
-        JOptionPane.showMessageDialog(null, "song successfully downloaded");;
+        try {
+            check = false;
+            int selectedIndex = MusicList.getSelectedIndex();
+            
+            //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
+            ResultSet rs = db.getDB("usersong");
+            while(rs.next()){
+                if(rs.getInt("userID") == Database.getIDAccUser()){
+                    if(rs.getInt("SongID") == listMusic.getElementAt(selectedIndex).getNo()){
+                        check = true;
+                    }
+                }
+            }
+            if (!check){
+                String Dir = db.Download(listMusic.getElementAt(selectedIndex).getLink(), listMusic.getElementAt(selectedIndex).getName());
+                db.insertMusicToUser(Database.getIDAccUser(), listMusic.getElementAt(selectedIndex).getNo(), Dir);
+                listMusic.getElementAt(selectedIndex).setDirectory("./src/Music/" + listMusic.getElementAt(selectedIndex).getName() + ".mp3");
+                JOptionPane.showMessageDialog(null, "song successfully downloaded");
+            } else{
+                JOptionPane.showMessageDialog(null, "song already added");;
+            }
+            
+            
+            //ketika berhasil
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_MusicListMouseClicked
 
 

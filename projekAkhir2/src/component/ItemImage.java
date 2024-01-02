@@ -9,6 +9,9 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -105,10 +108,16 @@ public class ItemImage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        pn.removeAll();
-        pn.add(new FillPlaylist(data, pn));
-        pn.repaint();
-        pn.revalidate();
+        try {
+            pn.removeAll();
+            pn.add(new FillPlaylist(data, pn));
+            pn.repaint();
+            pn.revalidate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ItemImage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formMouseClicked
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered

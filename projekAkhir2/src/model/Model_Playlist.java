@@ -9,6 +9,7 @@ public class Model_Playlist {
     private String nama;
     private int jumlahLagu;
     private ArrayList<Model_Music> musik;
+    private int ID;
     static int index;
     static String repeat;
     static String shuffle;
@@ -20,11 +21,12 @@ public class Model_Playlist {
     }
      
     
-    public Model_Playlist(Icon image, String title) {
+    public Model_Playlist(Icon image, String title, int ID) {
         this.image = image;
-        this.title = title;       
-        
+        this.title = title;     
+        this.ID = ID;
     }
+    
 
     public Model_Playlist() {
     }
@@ -102,6 +104,14 @@ public class Model_Playlist {
         Random rand = new Random();
         
         int rand_int = rand.nextInt(musik.size());
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     

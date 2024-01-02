@@ -8,7 +8,11 @@ package Menu_utama;
 import java.awt.Color;
 import javax.swing.JFrame;
 import projek_latih2.admin;
-
+import Database.Database;
+import Method.JOption;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author asus
@@ -19,7 +23,7 @@ public class AdminPanel extends javax.swing.JPanel {
      * Creates new form AdminPanel
      */
     private final JFrame frame;
-    
+    Database db = new Database();
     private final Home home = new Home();
     public AdminPanel(JFrame frame) {
         this.frame = frame;
@@ -186,11 +190,22 @@ public class AdminPanel extends javax.swing.JPanel {
         msg.warning(this, "Sorry, username or password is incorrect");
         */
         
-        admin frameadmin = new admin(home);
-        frameadmin.setVisible(true);
-        frameadmin.revalidate();
-        
-        frame.dispose();
+        if (db.loginDB(tx_username.getText(), tx_pass.getText()) == 1){
+            try {
+                admin frameadmin = new admin(home);
+                frameadmin.setVisible(true);
+                frameadmin.revalidate();
+                
+                frame.dispose();
+                
+                frame.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (db.loginDB(tx_username.getText(), tx_pass.getText()) == 0){
+            JOption msg = new JOption();
+            msg.warning(this, "Sorry, admin or password is incorrect");
+        }
 
         
     }//GEN-LAST:event_bt_loginActionPerformed

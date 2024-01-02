@@ -5,11 +5,20 @@
  */
 package Menu_utama;
 
+import Database.Database;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.ResultSet;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Model_Music;
 import model.Model_Playlist;
-
+import Database.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author asus
@@ -18,18 +27,25 @@ public class ChooseMusic extends javax.swing.JPanel {
 
    public JPanel pn;
    public Model_Playlist playlist;
-    private DefaultListModel<String> listModel;
-    public ChooseMusic(JPanel panel, Model_Playlist data) {
+   private DefaultListModel<String> listModel;
+   private DefaultListModel<Model_Music> listMusic;
+   Database db = new Database();
+   Model_Music ms;
+    public ChooseMusic(JPanel panel, Model_Playlist data) throws ClassNotFoundException, SQLException {
         initComponents();
         this.pn = panel;
         this.playlist = data;
         listModel = new DefaultListModel<>();
+        listMusic = new DefaultListModel<>();
         
-        //Karena ini tidak berkaitan dengan MP3 (pemutaran lagu) jadi cuma nampilin judulnya aja
-        //menampilkan lagu yang sudah di download.
-        listModel.addElement("Mary on a.mp3");//judul lagunya
-        listModel.addElement("Cupid");
-        listModel.addElement("apa");
+        ResultSet rs = db.getUserMusic(Database.getIDAccUser());
+        while(rs.next()){
+            listModel.addElement(rs.getString("name"));
+            ms = new Model_Music();
+            ms.setName(rs.getString("name"));
+            ms.setNo(rs.getInt("songID"));
+            listMusic.addElement(ms);
+        }
         
         MusicListforChoose.setModel(listModel);
         
@@ -96,14 +112,32 @@ public class ChooseMusic extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MusicListforChooseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicListforChooseMouseClicked
-        int selectedIndex = MusicListforChoose.getSelectedIndex();
-        
-       JOptionPane.showMessageDialog(null, "songs have been added to "+ playlist.getTitle());
-        
-       pn.removeAll();
-       pn.add(new FillPlaylist(playlist, pn));
-       pn.repaint();
-       pn.revalidate();
+       try {
+           int selectedIndex = MusicListforChoose.getSelectedIndex();
+           
+           if(db.checkDBInt("playlist", "PlaylistID", playlist.getID())){
+               System.out.println("playlist check");
+               if(db.checkDBInt("playlistsong", "SongID", listMusic.getElementAt(selectedIndex).getNo())){
+                   JOptionPane.showMessageDialog(null, "lagu sudah ada");
+               } else {
+                   if(db.insertMusicToPlaylist(playlist.getID(), listMusic.getElementAt(selectedIndex).getNo())){
+                    JOptionPane.showMessageDialog(null, "songs have been added to "+ playlist.getTitle());
+
+                     pn.removeAll();
+                     pn.add(new FillPlaylist(playlist, pn));
+                     pn.repaint();
+                     pn.revalidate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "error");
+                }
+               }
+           }
+           
+       } catch (ClassNotFoundException ex) {
+           Logger.getLogger(ChooseMusic.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SQLException ex) {
+           Logger.getLogger(ChooseMusic.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }//GEN-LAST:event_MusicListforChooseMouseClicked
 
 

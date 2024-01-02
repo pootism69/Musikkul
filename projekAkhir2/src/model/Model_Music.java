@@ -4,20 +4,22 @@ import jaco.mp3.player.MP3Player;
 import java.io.File;
 
 public class Model_Music {
-    private String no;
+    private int no;
     private String name;
-    private String time;
+    private int time;
     
     MP3Player player = new MP3Player();
     File fileMusik;
+    
+    public Model_Music(){
+    
+    };
 
-    public Model_Music(String no, String name, String time, String nama, String penyanyi, String album, String genre, String lirik, String link, String directory) {
+    public Model_Music(int no, String name, int time, String penyanyi, String genre, String lirik, String link, String directory) {
         this.no = no;
         this.name = name;
         this.time = time;
-        this.nama = nama;
         this.penyanyi = penyanyi;
-        this.album = album;
         this.genre = genre;
         this.lirik = lirik;
         this.link = link;
@@ -88,7 +90,7 @@ public class Model_Music {
     }
    
     
-    public Model_Music(String no, String name, String time, String Directory) {
+    public Model_Music(int no, String name, int time, String Directory) {
         this.no = no;
         this.name = name;
         this.time = time;
@@ -102,17 +104,15 @@ public class Model_Music {
        setNama(fileName);
     }
 
-    public Model_Music() {
-    }
 
-    public String getNo() {
+    public int getNo() {
         return no;
     }
     public MP3Player getPlayer(){
         return player;
     }
 
-    public void setNo(String no) {
+    public void setNo(int no) {
         this.no = no;
     }
 
@@ -124,11 +124,11 @@ public class Model_Music {
         this.name = name;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 

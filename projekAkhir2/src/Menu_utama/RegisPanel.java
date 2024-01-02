@@ -8,6 +8,11 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import projek_latih2.login;
 import Method.*;
+import java.util.Random;
+import Database.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author asus
@@ -18,6 +23,8 @@ public class RegisPanel extends javax.swing.JPanel {
      * Creates new form RegisPanel
      */
     private JFrame frame;
+    Database db = new Database();
+    Random rd = new Random();
     public RegisPanel(JFrame frame) {
         this.frame = frame;
         initComponents();
@@ -127,17 +134,26 @@ public class RegisPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_regisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_regisActionPerformed
-       jPanel1.removeAll();
-       jPanel1.add(new LoginPanel(frame));
-       jPanel1.repaint();
-       jPanel1.revalidate();
-       
-       
-       /*
-        Dipake ketika username already taken
-        JOption msg = new JOption();
-        msg.warning(this, "Sorry, username already taken");
-        */
+        try {
+            Database.setIDAccUser(rd.nextInt(10000));
+            if (db.insertRegDB(tx_username.getText(), tx_pass.getText(), Database.getIDAccUser())){
+                jPanel1.removeAll();
+                jPanel1.add(new LoginPanel(frame));
+                jPanel1.repaint();
+                jPanel1.revalidate();
+            }else {
+                JOption msg = new JOption();
+                msg.warning(this, "Sorry, username already taken");
+            }
+            
+            /*
+            Dipake ketika username already taken
+            JOption msg = new JOption();
+            msg.warning(this, "Sorry, username already taken");
+            */
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_regisActionPerformed
 
     private void tx_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_usernameFocusGained

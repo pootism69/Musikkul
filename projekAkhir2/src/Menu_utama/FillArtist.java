@@ -8,6 +8,19 @@ package Menu_utama;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Model_Artist;
+import Database.Database;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import model.Model_Music;
 
 
 /**
@@ -20,25 +33,44 @@ public class FillArtist extends javax.swing.JPanel {
      * Creates new form FillPlaylist
      * @param data
      */
+    
+    private DefaultListModel<Model_Music> listMusic;
+    boolean check;
+    Model_Music ms;
     private DefaultListModel<String> listModel;
-    public FillArtist(Model_Artist data) {
+    Database db = new Database();
+    public FillArtist(Model_Artist data) throws SQLException {
         listModel = new DefaultListModel<>();
+        String sql = "artist = '" + data.getTitle() + "' ;";
+        
+        ResultSet rs = db.getDBWhere("song", sql);
+        listMusic = new DefaultListModel<>();
+        check = false;
+        
+        while(rs.next()){
+            listModel.addElement(rs.getString("name"));
+            ms = new Model_Music();
+            ms.setName(rs.getString("name"));
+            ms.setPenyanyi(rs.getString("artist"));
+            ms.setNo(rs.getInt("songID"));
+            ms.setLink(rs.getString("Link_Lagu"));
+            listMusic.addElement(ms);
+        }
+        
         initComponents();
         L_playlistName.setText(data.getTitle().trim());
         L_Description.setText(data.getDescription().trim());
         //perulangan buat ngambil lagu dari tabel 
         
         //Karena ini tidak berkaitan dengan MP3 (pemutaran lagu) jadi cuma nampilin judulnya aja
-        listModel.addElement("Mama Aku Ingin Pulang");//judul lagunya
-        listModel.addElement("Bintang Kehidupan");
-        listModel.addElement("Duri Terlindung");
-        listModel.addElement("Badai Pasti Berlalu");
         
         
         MusicListofArtist.setModel(listModel);
         
         
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,13 +128,34 @@ public class FillArtist extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MusicListofArtistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicListofArtistMouseClicked
-        int selectedIndex = MusicListofArtist.getSelectedIndex();
-        
-        //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
-        
-        
-        //ketika berhasil
-        JOptionPane.showMessageDialog(null, "song successfully downloaded");
+        try {
+            check = false;
+            int selectedIndex = MusicListofArtist.getSelectedIndex();
+            
+            //mekanisme memindahkan lagu ke download berdasarkan judul lagu yang sudah dipilih
+            ResultSet rs = db.getDB("usersong");
+            while(rs.next()){
+                if(rs.getInt("userID") == Database.getIDAccUser()){
+                    if(rs.getInt("SongID") == listMusic.getElementAt(selectedIndex).getNo()){
+                        check = true;
+                    }
+                }
+            }
+            if (!check){
+                String Dir = db.Download(listMusic.getElementAt(selectedIndex).getLink(), listMusic.getElementAt(selectedIndex).getName());
+                db.insertMusicToUser(Database.getIDAccUser(), listMusic.getElementAt(selectedIndex).getNo(), Dir);
+                listMusic.getElementAt(selectedIndex).setDirectory("./src/Music/" + listMusic.getElementAt(selectedIndex).getName() + ".mp3");
+                JOptionPane.showMessageDialog(null, "song successfully downloaded");;
+            } else{
+                JOptionPane.showMessageDialog(null, "song already added");;
+            }
+            
+            
+            //ketika berhasil
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_MusicListofArtistMouseClicked
 
 

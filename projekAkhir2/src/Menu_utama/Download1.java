@@ -5,7 +5,6 @@
  */
 package Menu_utama;
 
-import component.bottomMenu;
 import jaco.mp3.player.MP3Player;
 import java.io.File;
 import javax.swing.DefaultListModel;
@@ -15,6 +14,12 @@ import javax.swing.JPanel;
 import model.Model_Music;
 import model.Model_Playlist;
 import model.Model_User;
+import Database.Database;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.nio.file.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,34 +36,37 @@ public class Download1 extends javax.swing.JPanel {
     private DefaultListModel<String> listModel;
     Model_User user = new Model_User(player);
     int j = 0;
-    
-    public Download1(JPanel pn) {
+    int i;
+    Database db = new Database();
+    private DefaultListModel<Model_Music> listMusic;
+    Model_Music ms;
+    public Download1(JPanel pn) throws ClassNotFoundException, SQLException, IOException {
         
         listModel = new DefaultListModel<>();
+        listMusic = new DefaultListModel<>();
+        ResultSet rs = db.getUserMusic(Database.getIDAccUser());
+        while(rs.next()){
+            Path path = Paths.get(rs.getString("local_Dir"));
+            if (Files.notExists(path)) {
+                String Dir = db.Download(rs.getString("Link_Lagu"), rs.getString("name"));
+                JOptionPane.showMessageDialog(null, "song successfully downloaded");
+              }
+            user.addMusik(new Model_Music(rs.getInt("SongID"), rs.getString("name"), rs.getInt("duration"), rs.getString("local_Dir")));
+            listModel.addElement(rs.getString("name"));//judul lagunya
+        }
         this.pn = pn;
         initComponents();
        
         //Menampilkan daftar Playlist
-       mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
-       mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
-       mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
-       mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
-       mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), "Lagu kesukaan"), pn);
+       String sql = "userID = " + Database.getIDAccUser() + " ;";
+       
+       rs = db.getDBWhere("playlist", sql);
+       while(rs.next()){
+           mostPopular1.addImage(new Model_Playlist(new ImageIcon(getClass().getResource("/gambar/Playlist.png")), rs.getString("name"),rs.getInt("PlaylistID")), pn);
+       }
         
-        // Tambahkan lagu ke playlist dan JList
-        //jika sudah ada databasenya mungkin parameternya dari value kolom-kolom di databasenya
-        user.addMusik(new Model_Music("1", "Ammakku Surugaku", "03:00", "D:\\Ammaku.mp3"));
-        listModel.addElement("Ammakku Surugaku");//judul lagunya
-        user.addMusik(new Model_Music("2", "Duriat Pegat", "03:00", "D:\\DuriatPegat.mp3"));
-        listModel.addElement("Duriat Pegat");
-        user.addMusik(new Model_Music("2", "Inget Ka Mantan", "03:00", "D:\\IngetKaMantan.mp3"));
-        listModel.addElement("Inget Ka Mantan");
-        user.addMusik(new Model_Music("2", "Keloas", "03:00", "D:\\Keloas.mp3"));
-        listModel.addElement("Keloas");
-        user.addMusik(new Model_Music("2", "Rek Ayo Rek", "03:00", "D:\\rekAyorek.mp3"));
-        listModel.addElement("Rek Ayo Rek");
-        user.addMusik(new Model_Music("2", "Segara Madu", "03:00", "D:\\SegaraMadu.mp3"));
-        listModel.addElement("Segara Madu");
+      
+        
         
         
    
