@@ -95,7 +95,6 @@ public class FillPlaylist extends javax.swing.JPanel {
         bt_stop = new javax.swing.JLabel();
         bt_backward = new javax.swing.JLabel();
         bt_forward = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         MusicPlaylist = new javax.swing.JList<>();
 
         setPreferredSize(new java.awt.Dimension(1110, 620));
@@ -170,22 +169,22 @@ public class FillPlaylist extends javax.swing.JPanel {
                 MusicPlaylistMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(MusicPlaylist);
 
         javax.swing.GroupLayout pnFillLayout = new javax.swing.GroupLayout(pnFill);
         pnFill.setLayout(pnFillLayout);
         pnFillLayout.setHorizontalGroup(
             pnFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFillLayout.createSequentialGroup()
-                .addGroup(pnFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 997, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(pnFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFillLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(L_playlistName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(583, 583, 583)
                         .addComponent(bt_addsong)
-                        .addGap(13, 13, 13)))
-                .addGap(15, 15, 15)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFillLayout.createSequentialGroup()
+                        .addComponent(MusicPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
         );
         pnFillLayout.setVerticalGroup(
@@ -195,8 +194,9 @@ public class FillPlaylist extends javax.swing.JPanel {
                 .addGroup(pnFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(L_playlistName)
                     .addComponent(bt_addsong))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addComponent(MusicPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
         );
 
@@ -309,7 +309,6 @@ public class FillPlaylist extends javax.swing.JPanel {
     private javax.swing.JLabel bt_play;
     private javax.swing.JLabel bt_stop;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnFill;
     // End of variables declaration//GEN-END:variables
 }

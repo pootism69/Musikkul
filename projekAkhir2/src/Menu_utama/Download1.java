@@ -110,7 +110,6 @@ public class Download1 extends javax.swing.JPanel {
         bt_stop = new javax.swing.JLabel();
         bt_backward = new javax.swing.JLabel();
         bt_forward = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         playlistLagu = new javax.swing.JList<>();
 
         setLayout(new java.awt.CardLayout());
@@ -184,7 +183,6 @@ public class Download1 extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(playlistLagu);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,18 +191,23 @@ public class Download1 extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(lb_playlist))
-                        .addGap(865, 865, 865)
-                        .addComponent(bt_addPlaylist)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lb_playlist))
+                                .addGap(865, 865, 865)
+                                .addComponent(bt_addPlaylist)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(mostPopular1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(3, 3, 3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(mostPopular1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addGap(3, 3, 3)
+                        .addContainerGap()
+                        .addComponent(playlistLagu, javax.swing.GroupLayout.PREFERRED_SIZE, 1043, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -222,11 +225,11 @@ public class Download1 extends javax.swing.JPanel {
                         .addComponent(bt_addPlaylist)))
                 .addGap(10, 10, 10)
                 .addComponent(mostPopular1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(playlistLagu, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
 
@@ -263,20 +266,30 @@ public class Download1 extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_stopMouseClicked
 
     private void bt_backwardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_backwardMouseClicked
-        user.skipBackward();
-       
+        if (j > 0){
             j--;
             playlistLagu.setSelectedIndex(j);
+            user.skipBackward();
+        }else{
+            j = 0;
+            playlistLagu.setSelectedIndex(j);
+        }
         
         
         
     }//GEN-LAST:event_bt_backwardMouseClicked
 
     private void bt_forwardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_forwardMouseClicked
-        user.skipForward();
-       
+        int playlistSize = user.getMP3Player().getPlayList().size();
+        
+        if(j < playlistSize - 1){
+            user.skipForward();
             j++;
             playlistLagu.setSelectedIndex(j);
+        }else{
+            j = playlistSize-1;
+            playlistLagu.setSelectedIndex(j);
+        }
             
     }//GEN-LAST:event_bt_forwardMouseClicked
 
@@ -337,7 +350,6 @@ public class Download1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_playlist;
     private component.MostPopular mostPopular1;
     private javax.swing.JList<String> playlistLagu;

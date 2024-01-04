@@ -45,7 +45,6 @@ public class Search extends javax.swing.JPanel {
         lb_searchField = new javax.swing.JLabel();
         lb_whatSong = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         MusicListSearch = new javax.swing.JList<>();
 
         setLayout(new java.awt.CardLayout());
@@ -90,15 +89,14 @@ public class Search extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         MusicListSearch.setBackground(new java.awt.Color(19, 19, 44));
+        MusicListSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         MusicListSearch.setForeground(new java.awt.Color(255, 255, 255));
         MusicListSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MusicListSearchMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(MusicListSearch);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 1090, 300));
+        jPanel1.add(MusicListSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 510, 210));
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -189,7 +187,6 @@ public class Search extends javax.swing.JPanel {
     private javax.swing.JList<String> MusicListSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_Search;
     private javax.swing.JLabel lb_searchField;
     private javax.swing.JLabel lb_whatSong;

@@ -49,7 +49,7 @@ public class admin extends javax.swing.JFrame {
             ms.setLink(rs.getString("Link_Lagu"));
             ms.setGenre(rs.getString("genre"));
             ms.setTime(rs.getInt("duration"));
-            ms.setLirik("Lirik");
+            ms.setLirik(rs.getString("Lirik"));
             listMusic.addElement(ms);
         }
         jList1.setModel(listModel);
@@ -463,7 +463,7 @@ public class admin extends javax.swing.JFrame {
                     ms.setLink(rs.getString("Link_Lagu"));
                     ms.setGenre(rs.getString("genre"));
                     ms.setTime(rs.getInt("duration"));
-                    ms.setLirik("Lirik");
+                    ms.setLirik(rs.getString("Lirik"));
                     listMusic.addElement(ms);
                 }
                 jList1.setModel(listModel);
@@ -578,7 +578,7 @@ public class admin extends javax.swing.JFrame {
         tx_title1.setText(listMusic.getElementAt(jList2.getSelectedIndex()).getName());
         tx_artist1.setText(listMusic.getElementAt(jList2.getSelectedIndex()).getPenyanyi());
         tx_Genre1.setText(listMusic.getElementAt(jList2.getSelectedIndex()).getGenre());
-        tx_Duration1.setText(Integer.toHexString(listMusic.getElementAt(jList2.getSelectedIndex()).getTime()));
+        tx_Duration1.setText(Integer.toString(listMusic.getElementAt(jList2.getSelectedIndex()).getTime()));
         tx_Link1.setText(listMusic.getElementAt(jList2.getSelectedIndex()).getLink());
         tx_Lirik1.setText(listMusic.getElementAt(jList2.getSelectedIndex()).getLirik());
 

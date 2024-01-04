@@ -62,7 +62,6 @@ public class ChooseMusic extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         MusicListforChoose = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(19, 19, 44));
@@ -87,7 +86,6 @@ public class ChooseMusic extends javax.swing.JPanel {
                 MusicListforChooseMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(MusicListforChoose);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,16 +94,19 @@ public class ChooseMusic extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(560, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addContainerGap(239, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(MusicListforChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(MusicListforChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -114,10 +115,10 @@ public class ChooseMusic extends javax.swing.JPanel {
     private void MusicListforChooseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MusicListforChooseMouseClicked
        try {
            int selectedIndex = MusicListforChoose.getSelectedIndex();
+           String sql = "SongID = " + listMusic.getElementAt(selectedIndex).getNo() + " && PlaylistID = " + playlist.getID();
+           ResultSet rs = db.getDBWhere("playlistsong", sql);
            
-           if(db.checkDBInt("playlist", "PlaylistID", playlist.getID())){
-               System.out.println("playlist check");
-               if(db.checkDBInt("playlistsong", "SongID", listMusic.getElementAt(selectedIndex).getNo())){
+            if(rs.next()){
                    JOptionPane.showMessageDialog(null, "lagu sudah ada");
                } else {
                    if(db.insertMusicToPlaylist(playlist.getID(), listMusic.getElementAt(selectedIndex).getNo())){
@@ -131,7 +132,6 @@ public class ChooseMusic extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "error");
                 }
                }
-           }
            
        } catch (ClassNotFoundException ex) {
            Logger.getLogger(ChooseMusic.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,6 +145,5 @@ public class ChooseMusic extends javax.swing.JPanel {
     private javax.swing.JList<String> MusicListforChoose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

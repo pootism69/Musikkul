@@ -108,7 +108,7 @@ public class Database {
     }
     public boolean checkDBInt(String table, String column, int x){
         try{
-            String y = Integer.toHexString(x);
+            String y = Integer.toString(x);
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(JDBC_URL, "root","");
             String sql = " SELECT " + column + " FROM " + table
@@ -300,12 +300,11 @@ public class Database {
              Class.forName("com.mysql.cj.jdbc.Driver");
              Connection con = DriverManager.getConnection(JDBC_URL, "root","");
              
-             if(this.checkDBInt("song", "songID", ID)){
-                 String sql = "DELETE FROM song WHERE songID =" + ID + ";";
+             String sql = "DELETE FROM song WHERE songID = ?";
                  PreparedStatement st = con.prepareStatement(sql);
+                 st.setInt(1, ID);
                  st.executeUpdate();
                  return true;
-             }
              
              
          } catch (Exception e){

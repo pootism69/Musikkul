@@ -82,30 +82,15 @@ public class FillArtist extends javax.swing.JPanel {
     private void initComponents() {
 
         pnFill = new javax.swing.JPanel();
+        MusicListofArtist = new javax.swing.JList<>();
         L_playlistName = new javax.swing.JLabel();
         L_Description = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        MusicListofArtist = new javax.swing.JList<>();
 
         setLayout(new java.awt.CardLayout());
 
         pnFill.setBackground(new java.awt.Color(19, 19, 44));
         pnFill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        L_playlistName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 48)); // NOI18N
-        L_playlistName.setForeground(new java.awt.Color(255, 255, 255));
-        L_playlistName.setText("ARTIST NAME");
-        pnFill.add(L_playlistName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
-
-        L_Description.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        L_Description.setForeground(new java.awt.Color(255, 255, 255));
-        L_Description.setText("Description");
-        pnFill.add(L_Description, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Artisti(playlist).png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        pnFill.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, 0, 710, 260));
 
         MusicListofArtist.setBackground(new java.awt.Color(19, 19, 44));
         MusicListofArtist.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -120,9 +105,21 @@ public class FillArtist extends javax.swing.JPanel {
                 MusicListofArtistMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(MusicListofArtist);
+        pnFill.add(MusicListofArtist, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 1190, 440));
 
-        pnFill.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 1220, 960));
+        L_playlistName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 48)); // NOI18N
+        L_playlistName.setForeground(new java.awt.Color(255, 255, 255));
+        L_playlistName.setText("ARTIST NAME");
+        pnFill.add(L_playlistName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        L_Description.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        L_Description.setForeground(new java.awt.Color(255, 255, 255));
+        L_Description.setText("Description");
+        pnFill.add(L_Description, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Artisti(playlist).png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        pnFill.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, 0, 710, 260));
 
         add(pnFill, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -164,7 +161,6 @@ public class FillArtist extends javax.swing.JPanel {
     private javax.swing.JLabel L_playlistName;
     private javax.swing.JList<String> MusicListofArtist;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnFill;
     // End of variables declaration//GEN-END:variables
 }
