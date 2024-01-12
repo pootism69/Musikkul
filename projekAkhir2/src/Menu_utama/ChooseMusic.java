@@ -129,7 +129,7 @@ public class ChooseMusic extends javax.swing.JPanel {
                      pn.repaint();
                      pn.revalidate();
                 } else {
-                    JOptionPane.showMessageDialog(null, "error");
+                    JOptionPane.showMessageDialog(null, "Unexpected Error");
                 }
                }
            

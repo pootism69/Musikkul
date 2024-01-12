@@ -55,6 +55,7 @@ public class AddPlaylist extends javax.swing.JPanel {
 
         jTextField1.setBackground(new java.awt.Color(22, 27, 61));
         jTextField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 480, 40));
 
@@ -85,15 +86,21 @@ public class AddPlaylist extends javax.swing.JPanel {
 
     private void bt_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_saveActionPerformed
         try {
-            if (db.createPlaylist(jTextField1.getText(), Database.getIDAccUser())){
+            System.out.println(jTextField1.getText());
+            if(jTextField1.getText() == "" || jTextField1.getText() == null){
+                JOptionPane.showMessageDialog(null, "Empty Field");
+            } else {
+                 if (db.createPlaylist(jTextField1.getText(), Database.getIDAccUser())){
                 JOptionPane.showMessageDialog(null, "Playlist created");
                  pn.removeAll();
                  pn.add(new Download1(pn));
                  pn.repaint();
                  pn.revalidate();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Playlist Sudah ada");
+                }
             }
+           
             
            
         } catch (ClassNotFoundException ex) {

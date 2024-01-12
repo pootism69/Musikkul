@@ -152,6 +152,7 @@ public class Database {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(JDBC_URL, "root","");
             
+            ResultSet rs = this.getDBWhere(pass, pass);
             if (!checkDBString("user", "nama", username)){
                 String sql = "INSERT INTO user"
                         + " (nama, password,userID) " 
@@ -257,9 +258,11 @@ public class Database {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(JDBC_URL, "root","");
+            String sql = "UserID = " + userID + " && name = '" + nama + "'";
+           ResultSet rs = this.getDBWhere("playlist", sql);
             
-            if (!checkDBString("playlist", "name",nama)){
-                String sql = "INSERT INTO playlist"
+            if (!rs.next()){
+                sql = "INSERT INTO playlist"
                         + " (name, userID) " 
                         + "VALUES (?,?);";
                 PreparedStatement st = con.prepareStatement(sql);
